@@ -21,7 +21,16 @@ public class LoanApplicant
     private long caddmobno;
     private double downPayment;
     private double totalLoan;
-    private String loanStatus;   
+    private String loanStatus;  
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    private AllPersonalDocs documents;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    private DependentInfo info;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    private CustomerAddress address;
     
     @OneToOne(cascade=CascadeType.ALL)
     private MedicalDetails medical;

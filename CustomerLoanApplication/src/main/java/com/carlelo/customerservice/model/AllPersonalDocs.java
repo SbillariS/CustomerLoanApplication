@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class ApplicantDetails
+public class AllPersonalDocs
 {
 	@Id
 private int documentID;
