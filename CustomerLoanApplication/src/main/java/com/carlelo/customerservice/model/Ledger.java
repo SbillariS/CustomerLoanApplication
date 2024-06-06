@@ -6,9 +6,9 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Ledger {
+public class Ledger 
+{
   @Id
-  
  private int ledgerId;
   private String ledgerCreatedDate;
   private double totalLoanAmount;

@@ -3,6 +3,7 @@ package com.carlelo.customerservice.model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 @Data
@@ -32,5 +33,17 @@ public class LoanApplicant
     private AccountDetails account;
     
     @OneToOne(cascade=CascadeType.ALL)
+    private GuarantorDetails guarantor;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    private LoanDisbursement disbursment;
+    
+    @OneToMany(cascade=CascadeType.ALL)
+    private Ledger ledger;
+    
+    @OneToOne(cascade=CascadeType.ALL)
     private SanctionLetter saction;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    private CustomerVerification verification;
 }
