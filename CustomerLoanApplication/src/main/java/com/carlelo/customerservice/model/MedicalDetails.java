@@ -16,5 +16,6 @@ public class MedicalDetails
 	private Double loanAmount;
 	private String treatment;
 
+	
 
 }
