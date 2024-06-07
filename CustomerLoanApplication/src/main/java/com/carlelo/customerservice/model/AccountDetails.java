@@ -16,5 +16,4 @@ public class AccountDetails
 	private String accountStatus;
 	private long accountNumber;
 
-
 }
