@@ -1,5 +1,7 @@
 package com.carlelo.customerservice.model;
 
+import java.util.Set;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -23,6 +25,7 @@ public class LoanApplicant
     private double totalLoan;
     private String loanStatus;  
     
+    
     @OneToOne(cascade=CascadeType.ALL)
     private AllPersonalDocs documents;
     
@@ -41,6 +44,7 @@ public class LoanApplicant
     @OneToOne(cascade=CascadeType.ALL)
     private AccountDetails account;
     
+    
     @OneToOne(cascade=CascadeType.ALL)
     private GuarantorDetails guarantor;
     
@@ -48,7 +52,7 @@ public class LoanApplicant
     private LoanDisbursement disbursment;
     
     @OneToMany(cascade=CascadeType.ALL)
-    private Ledger ledger;
+    private Set<Ledger> ledger;
     
     @OneToOne(cascade=CascadeType.ALL)
     private SanctionLetter saction;

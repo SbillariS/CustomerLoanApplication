@@ -1,5 +1,10 @@
 package com.carlelo.customerservice.servicei;
 
-public interface LoanApplicantServiceI {
+import com.carlelo.customerservice.model.LoanApplicant;
+
+public interface LoanApplicantServiceI 
+{
+	
+	public LoanApplicant addCustomerDetails(String customerdetails);
 
 }
