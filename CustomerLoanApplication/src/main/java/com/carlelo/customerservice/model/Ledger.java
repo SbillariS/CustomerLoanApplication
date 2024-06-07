@@ -8,7 +8,6 @@ import lombok.Data;
 @Entity
 public class Ledger 
 {
-	
   @Id
  private int ledgerId;
   private String ledgerCreatedDate;

@@ -44,6 +44,7 @@ public class LoanApplicant
     @OneToOne(cascade=CascadeType.ALL)
     private AccountDetails account;
     
+    
     @OneToOne(cascade=CascadeType.ALL)
     private GuarantorDetails guarantor;
     

@@ -13,8 +13,7 @@ import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 @RestController
 public class loanApplicantController 
 {
-	@Autowired 
-	LoanApplicantServiceI loan;
+	@Autowired LoanApplicantServiceI loan;
 	
 	@PostMapping("/addCustomerDetails")
 	public ResponseEntity<LoanApplicant> addCustomerDetails(@RequestPart("customerJson") String customerdetails)
