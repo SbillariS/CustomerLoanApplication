@@ -12,7 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 {
-	@Autowired LoanApplicantRepository repo;
+	@Autowired 
+	LoanApplicantRepository repo;
 
 	@Override
 	public LoanApplicant addCustomerDetails(String customerdetails) 
