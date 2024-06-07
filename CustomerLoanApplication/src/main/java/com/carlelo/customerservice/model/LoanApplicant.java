@@ -8,7 +8,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 @Data
+@Setter
+@Getter
 @Entity
 public class LoanApplicant
 {
@@ -24,7 +28,6 @@ public class LoanApplicant
     private double downPayment;
     private double totalLoan;
     private String loanStatus;  
-    
     
     @OneToOne(cascade=CascadeType.ALL)
     private AllPersonalDocs documents;
@@ -44,7 +47,6 @@ public class LoanApplicant
     @OneToOne(cascade=CascadeType.ALL)
     private AccountDetails account;
     
-    
     @OneToOne(cascade=CascadeType.ALL)
     private GuarantorDetails guarantor;
     
@@ -57,6 +59,6 @@ public class LoanApplicant
     @OneToOne(cascade=CascadeType.ALL)
     private SanctionLetter saction;
     
-    @OneToOne(cascade=CascadeType.ALL)
+   @OneToOne(cascade=CascadeType.ALL)
     private CustomerVerification verification;
 }

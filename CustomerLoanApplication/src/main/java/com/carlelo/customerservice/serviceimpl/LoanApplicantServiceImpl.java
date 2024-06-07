@@ -1,9 +1,26 @@
 package com.carlelo.customerservice.serviceimpl;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.carlelo.customerservice.model.AccountDetails;
+import com.carlelo.customerservice.model.AllPersonalDocs;
+import com.carlelo.customerservice.model.CibilDetails;
+import com.carlelo.customerservice.model.CustomerAddress;
+import com.carlelo.customerservice.model.CustomerVerification;
+import com.carlelo.customerservice.model.DependentInfo;
+import com.carlelo.customerservice.model.GuarantorDetails;
+import com.carlelo.customerservice.model.Ledger;
 import com.carlelo.customerservice.model.LoanApplicant;
+import com.carlelo.customerservice.model.LoanDisbursement;
+import com.carlelo.customerservice.model.MedicalDetails;
+import com.carlelo.customerservice.model.SanctionLetter;
 import com.carlelo.customerservice.repository.LoanApplicantRepository;
 import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,16 +32,48 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	@Autowired LoanApplicantRepository repo;
 
 	@Override
-	public LoanApplicant addCustomerDetails(String customerdetails) 
+	public LoanApplicant addCustomerDetails(String customerdetails,MultipartFile profaddr,MultipartFile profpan, MultipartFile profphoto, MultipartFile profit, MultipartFile profadhar,MultipartFile profsign, MultipartFile profchecque, MultipartFile profsslip) 
 	{
 		ObjectMapper mapper=new ObjectMapper();
 		LoanApplicant app=null;
+		
+		
 		try {
 			app=mapper.readValue(customerdetails, LoanApplicant.class);
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
+		}
+		if(app!=null)
+		{
+			try {
+				AllPersonalDocs app2=new AllPersonalDocs();
+				app2.setAddressProof(profaddr.getBytes());
+				app2.setAddharCard(profadhar.getBytes());
+				app2.setBankcheque(profchecque.getBytes());
+				app2.setIncomeTax(profit.getBytes());
+				app2.setPanCard(profpan.getBytes());
+				app2.setPhoto(profphoto.getBytes());
+				app2.setSalarySlips(profsslip.getBytes());
+				app2.setSignature(profsign.getBytes());
+				app.setDocuments(app2);
+				/*app.setInfo(app1);
+				app.setAccount(app3);
+				app.setCibil(app4);
+				app.setAddress(app5);
+				app.setVerification(app6);
+				app.setGuarantor(app7);
+				app.setLedger(null);
+				app.setDisbursment(app9);
+				app.setMedical(app10);
+				app.setSaction(app11);*/
+			}
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+			
 		}
 		return repo.save(app);
 	}
