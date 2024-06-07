@@ -15,4 +15,5 @@ public class CibilDetails
     private String isApplicable;
     private String fromDate;
     private String toDate;
+
 }
