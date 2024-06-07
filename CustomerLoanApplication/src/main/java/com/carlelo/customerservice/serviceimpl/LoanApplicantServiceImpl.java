@@ -1,5 +1,8 @@
 package com.carlelo.customerservice.serviceimpl;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +30,40 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 			e.printStackTrace();
 		}
 		return repo.save(app);
+	}
+
+	@Override
+	public List<LoanApplicant> GetAllApplicantDetails()
+	{
+		return repo.findAll();
+	}
+
+	@Override
+	public LoanApplicant GetSingleApplicant(int customerId) 
+	{
+		Optional<LoanApplicant> optional=repo.findById(customerId);
+		if(optional.isPresent())
+		{
+		   return optional.get();
+		}
+		return null;
+	}
+
+	@Override
+	public List<LoanApplicant> deleteSingleApplicant(int customerId)
+	{
+		if(repo.existsById(customerId))
+		{
+		   repo.deleteById(customerId);
+		   return repo.findAll();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public void deleteAllApplicant() 
+	{
+		 repo.deleteAll();
 	}
 }
