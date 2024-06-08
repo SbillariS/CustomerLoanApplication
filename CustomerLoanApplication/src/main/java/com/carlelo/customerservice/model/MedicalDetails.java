@@ -15,5 +15,4 @@ public class MedicalDetails
 	private String billingDate;
 	private Double loanAmount;
 	private String treatment;
-
 }
