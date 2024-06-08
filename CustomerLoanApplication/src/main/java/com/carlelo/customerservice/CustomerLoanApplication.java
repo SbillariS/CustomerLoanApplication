@@ -12,10 +12,19 @@ public class CustomerLoanApplication {
 		SpringApplication.run(CustomerLoanApplication.class, args);
 	}
 	@Bean
+<<<<<<< HEAD
 	public RestTemplate rs()
 	{
 		RestTemplate rt=new RestTemplate();
 		return rt;
 				
 	}
+=======
+	public RestTemplate rt()
+	{
+		RestTemplate rs=new RestTemplate();
+		return rs;
+	}
+
+>>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
 }
