@@ -14,6 +14,7 @@ import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 public class loanApplicantController 
 {
 	@Autowired LoanApplicantServiceI loan;
+		
 	
 	@PostMapping("/addCustomerDetails")
 	public ResponseEntity<LoanApplicant> addCustomerDetails(@RequestPart("customerJson") String customerdetails)
@@ -21,4 +22,5 @@ public class loanApplicantController
 		LoanApplicant la=loan.addCustomerDetails(customerdetails);
 		return new ResponseEntity<LoanApplicant>(la,HttpStatus.CREATED);	
 	}
+	
 }

@@ -23,7 +23,7 @@ public class LoanApplicant
     private long caddmobno;
     private double downPayment;
     private double totalLoan;
-    private String loanStatus;  
+    private String loanStatus; 
     
     
     @OneToOne(cascade=CascadeType.ALL)
@@ -43,7 +43,6 @@ public class LoanApplicant
     
     @OneToOne(cascade=CascadeType.ALL)
     private AccountDetails account;
-    
     
     @OneToOne(cascade=CascadeType.ALL)
     private GuarantorDetails guarantor;
