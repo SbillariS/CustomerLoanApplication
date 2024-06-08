@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.carlelo.customerservice.model.CibilDetails;
 import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 
@@ -20,8 +22,9 @@ import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 public class loanApplicantController 
 {
 	@Autowired LoanApplicantServiceI loan;
+	@Autowired RestTemplate rt;
 	
-	@PostMapping("/addCustomerDetails")
+	@PostMapping("/addCustomerDetails/{enquiryId}")
 	public ResponseEntity<LoanApplicant> addCustomerDetails(@RequestPart("customerJson") String customerdetails,
 			                                                @RequestPart("address") MultipartFile profaddr,
 			                                                @RequestPart("pan") MultipartFile profpan,
@@ -30,9 +33,12 @@ public class loanApplicantController
 			                                                @RequestPart("adhar") MultipartFile profadhar,
 			                                                @RequestPart("sign") MultipartFile profsign,
 			                                                @RequestPart("checque") MultipartFile profchecque,
-			                                                @RequestPart("sslip") MultipartFile profsslip)
-	{                         
-		LoanApplicant la=loan.addCustomerDetails(customerdetails,profaddr,profpan,profphoto,profit,profadhar,profsign,profchecque,profsslip);
+			                                                @RequestPart("sslip") MultipartFile profsslip,
+			                                                @PathVariable String enquiryId)
+	{      
+		String url="http://localhost:9080/getcibilDetails/"+enquiryId;
+		CibilDetails cd=rt.getForObject(url, CibilDetails.class);
+		LoanApplicant la=loan.addCustomerDetails(customerdetails,profaddr,profpan,profphoto,profit,profadhar,profsign,profchecque,profsslip,enquiryId,cd);
 		return new ResponseEntity<LoanApplicant>(la,HttpStatus.CREATED);	
 	}
 	

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.carlelo.customerservice.model.AllPersonalDocs;
+import com.carlelo.customerservice.model.CibilDetails;
 import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.repository.LoanApplicantRepository;
 import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
@@ -19,7 +20,10 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	@Autowired LoanApplicantRepository repo;
 
 	@Override
-	public LoanApplicant addCustomerDetails(String customerdetails,MultipartFile profaddr,MultipartFile profpan, MultipartFile profphoto, MultipartFile profit, MultipartFile profadhar,MultipartFile profsign, MultipartFile profchecque, MultipartFile profsslip) 
+	public LoanApplicant addCustomerDetails(String customerdetails,MultipartFile profaddr,
+			MultipartFile profpan, MultipartFile profphoto, MultipartFile profit,
+			MultipartFile profadhar,MultipartFile profsign, MultipartFile profchecque, 
+			MultipartFile profsslip,String enquiryId,CibilDetails cd) 
 	{
 		ObjectMapper mapper=new ObjectMapper();
 		LoanApplicant app=null;
@@ -45,6 +49,7 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 				app2.setSalarySlips(profsslip.getBytes());
 				app2.setSignature(profsign.getBytes());
 				app.setDocuments(app2);
+				app.setCibil(cd);
 			}
 			catch (IOException e) 
 			{
