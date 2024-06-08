@@ -77,4 +77,62 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		}
 		return repo.save(app);
 	}
+
+	
+	  //update
+	@Override
+	public LoanApplicant updateLoanApplicant(String customerdetails, MultipartFile profaddr, MultipartFile profpan,
+			MultipartFile profphoto, MultipartFile profit, MultipartFile profadhar, MultipartFile profsign,
+			MultipartFile profchecque, MultipartFile profsslip) {
+		
+		
+		ObjectMapper mapper=new ObjectMapper();
+		LoanApplicant up=null;
+		
+		
+		try {
+			up=mapper.readValue(customerdetails, LoanApplicant.class);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		if(up!=null)
+		{
+			try {
+				AllPersonalDocs app2=new AllPersonalDocs();
+				app2.setAddressProof(profaddr.getBytes());
+				app2.setAddharCard(profadhar.getBytes());
+				app2.setBankcheque(profchecque.getBytes());
+				app2.setIncomeTax(profit.getBytes());
+				app2.setPanCard(profpan.getBytes());
+				app2.setPhoto(profphoto.getBytes());
+				app2.setSalarySlips(profsslip.getBytes());
+				app2.setSignature(profsign.getBytes());
+				up.setDocuments(app2);
+				/*app.setInfo(app1);
+				app.setAccount(app3);
+				app.setCibil(app4);
+				app.setAddress(app5);
+				app.setVerification(app6);
+				app.setGuarantor(app7);
+				app.setLedger(null);
+				app.setDisbursment(app9);
+				app.setMedical(app10);
+				app.setSaction(app11);*/
+			}
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+			
+		}
+		return repo.save(up);
+
+	}
+
+	
+
+	
+	
 }

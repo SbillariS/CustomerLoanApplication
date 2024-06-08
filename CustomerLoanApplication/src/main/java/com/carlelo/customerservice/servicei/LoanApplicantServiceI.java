@@ -9,4 +9,9 @@ public interface LoanApplicantServiceI
 	
 	public LoanApplicant addCustomerDetails(String customerdetails,MultipartFile profaddr, MultipartFile profpan, MultipartFile profphoto, MultipartFile profit, MultipartFile profadhar, MultipartFile profsign, MultipartFile profchecque, MultipartFile profsslip);
 
+	public LoanApplicant updateLoanApplicant(String customerdetails, MultipartFile profaddr, MultipartFile profpan,
+			MultipartFile profphoto, MultipartFile profit, MultipartFile profadhar, MultipartFile profsign,
+			MultipartFile profchecque, MultipartFile profsslip);
+
+	
 }

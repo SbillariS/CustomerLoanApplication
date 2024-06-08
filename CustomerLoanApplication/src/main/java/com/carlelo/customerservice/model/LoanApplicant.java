@@ -29,6 +29,10 @@ public class LoanApplicant
     private double totalLoan;
     private String loanStatus;  
     
+    
+    
+  
+    
     @OneToOne(cascade=CascadeType.ALL)
     private AllPersonalDocs documents;
     
