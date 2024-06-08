@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.carlelo.customerservice.model.CustomerAddress;
 import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.model.MedicalDetails;
-import com.carlelo.customerservice.servicei.CustomerAddressServiceI;
+
 import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 import com.carlelo.customerservice.servicei.MedicalDetailsServiceI;
 
