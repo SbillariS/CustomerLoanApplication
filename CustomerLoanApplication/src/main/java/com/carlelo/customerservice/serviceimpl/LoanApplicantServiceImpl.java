@@ -4,7 +4,12 @@ import java.util.Optional;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+
 import org.springframework.web.multipart.MultipartFile;
 import com.carlelo.customerservice.model.AllPersonalDocs;
 import com.carlelo.customerservice.model.CibilDetails;
@@ -61,6 +66,47 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	}
 
 	@Override
+
+	public LoanApplicant patchData(String loanjason, MultipartFile documentid, MultipartFile addressproof,
+			MultipartFile pancard, MultipartFile incomeTax, MultipartFile adcardd, MultipartFile img,
+			MultipartFile signature, MultipartFile banqcheque, MultipartFile salaryslip) {
+		ObjectMapper mapper=new ObjectMapper();
+		LoanApplicant app=null;
+	
+		
+		try {
+			app=mapper.readValue(loanjason, LoanApplicant.class);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		if(app!=null)
+		{
+			try {
+				AllPersonalDocs app2=new AllPersonalDocs();
+				app2.setAddressProof(documentid.getBytes());
+				app2.setAddharCard(addressproof.getBytes());
+				app2.setBankcheque(pancard.getBytes());
+				app2.setIncomeTax(incomeTax.getBytes());
+				app2.setPanCard(adcardd.getBytes());
+				app2.setPhoto(img.getBytes());
+				app2.setSalarySlips(signature.getBytes());
+				app2.setSignature(banqcheque.getBytes());
+				app2.setSignature(salaryslip.getBytes());
+				app.setDocuments(app2);
+			
+			}
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+			
+		}
+		return repo.save(app);
+	}
+	
+
 	public List<LoanApplicant> GetAllApplicantDetails()
 	{
 		return repo.findAll();
@@ -94,4 +140,6 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	{
 		 repo.deleteAll();
 	}
+
 }
+

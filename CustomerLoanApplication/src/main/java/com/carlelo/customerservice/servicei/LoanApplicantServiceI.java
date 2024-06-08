@@ -20,4 +20,8 @@ public interface LoanApplicantServiceI
 
 
 
+	public LoanApplicant patchData(String loanjason, MultipartFile documentid, MultipartFile addressproof,
+			MultipartFile pancard, MultipartFile incomeTax, MultipartFile adcardd, MultipartFile img,
+			MultipartFile signature, MultipartFile banqcheque, MultipartFile salaryslip);
+
 }
