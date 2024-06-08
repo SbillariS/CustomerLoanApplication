@@ -17,7 +17,7 @@ public class GuarantorDetails {
    private  long guarantorAdharCardNo;
    private  String guarantorMortgageDetails;
    private  String guarantorJobDetails;
-   private  String	guarantorLoaclAddress;
+   private  String	guarantorLocalAddress;
    private  String guarantorPermanentAddress;
 
 }

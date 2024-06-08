@@ -3,7 +3,10 @@ package com.carlelo.customerservice.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +17,7 @@ import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.model.MedicalDetails;
 
 import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
-import com.carlelo.customerservice.servicei.MedicalDetailsServiceI;
+
 
 
 @RestController
@@ -27,18 +30,7 @@ public class loanApplicantController
 
 	@PostMapping("/addCustomerDetails")
 	public ResponseEntity<LoanApplicant> addCustomerDetails(@RequestPart("customerJson") String customerdetails,
-			                                               /* @RequestPart("info") String dependentinf,
-			                                        
-			                                                @RequestPart("accdetails") String accdetails,
-			                                                @RequestPart("cibdetails") String cibildetails,
-			                                                @RequestPart("addrdetails") String addressdetails,
-			                                                @RequestPart("veridetails") String verificationdetails,
-			                                                @RequestPart("gurantordetails") String gurantordetails,
-			                                                @RequestPart("leddetails") String ledgerdetails,
-			                                                @RequestPart("loandetails") String loanappdetails,
-			                                                @RequestPart("disbursedetails") String disbdetails,
-			                                                @RequestPart("medidetails") String medicaldetails,
-			                                                @RequestPart("sanctionletter") String sanctionletter,*/
+			                                             
 			                                                @RequestPart("address") MultipartFile profaddr,
 			                                                @RequestPart("pan") MultipartFile profpan,
 			                                                @RequestPart("photo") MultipartFile profphoto,
@@ -52,4 +44,26 @@ public class loanApplicantController
 		return new ResponseEntity<LoanApplicant>(la,HttpStatus.CREATED);	
 
 	}
+	@PutMapping("/patchDta/{customerId}")
+	public ResponseEntity <LoanApplicant> patchData(@RequestPart("text") String loanjason,
+			@PathVariable int customerId,
+			@RequestPart("id") MultipartFile documentid,
+			@RequestPart("add") MultipartFile addressproof,
+					@RequestPart("pancard") MultipartFile pancard,
+					@RequestPart("tax")MultipartFile incomeTax,
+							@RequestPart("adcard") MultipartFile adcardd,
+							@RequestPart("photo") MultipartFile img,
+							@RequestPart("signature") MultipartFile signature,
+							@RequestPart("bankc") MultipartFile banqcheque,
+							@RequestPart("salslip") MultipartFile salaryslip)
+	{
+		
+	LoanApplicant la1=loan.patchData(loanjason,documentid,addressproof,pancard,incomeTax,adcardd,img,signature,banqcheque,salaryslip);
+		return new ResponseEntity <LoanApplicant>( la1,HttpStatus.OK);
+	}
 }
+
+
+
+
+
