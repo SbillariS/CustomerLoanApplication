@@ -8,3 +8,4 @@ import com.carlelo.customerservice.model.LoanApplicant;
 public interface LoanApplicantRepository extends JpaRepository<LoanApplicant, Integer>{
 
 }
+
