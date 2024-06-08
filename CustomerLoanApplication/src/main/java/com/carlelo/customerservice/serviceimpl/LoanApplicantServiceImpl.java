@@ -6,11 +6,10 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestPart;
-=======
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
+
 import org.springframework.web.multipart.MultipartFile;
 import com.carlelo.customerservice.model.AllPersonalDocs;
 import com.carlelo.customerservice.model.CibilDetails;
@@ -67,7 +66,7 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public LoanApplicant patchData(String loanjason, MultipartFile documentid, MultipartFile addressproof,
 			MultipartFile pancard, MultipartFile incomeTax, MultipartFile adcardd, MultipartFile img,
 			MultipartFile signature, MultipartFile banqcheque, MultipartFile salaryslip) {
@@ -107,7 +106,7 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		return repo.save(app);
 	}
 	
-=======
+
 	public List<LoanApplicant> GetAllApplicantDetails()
 	{
 		return repo.findAll();
@@ -141,6 +140,6 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	{
 		 repo.deleteAll();
 	}
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
+
 }
 

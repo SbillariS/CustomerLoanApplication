@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.PatchMapping;
-=======
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-<<<<<<< HEAD
+
 import com.carlelo.customerservice.model.CustomerAddress;
-=======
+
 import com.carlelo.customerservice.model.CibilDetails;
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
+
 import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.model.MedicalDetails;
 
@@ -35,26 +35,20 @@ import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 @RestController
 public class loanApplicantController 
 {
-<<<<<<< HEAD
+
 	@Autowired
 	LoanApplicantServiceI loan;
-=======
-	@Autowired LoanApplicantServiceI loan;
-	@Autowired RestTemplate rt;
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
+
 	
-<<<<<<< HEAD
+	@Autowired RestTemplate rt;
 
 
-	@PostMapping("/addCustomerDetails")
-=======
+
+	
+
 	@PostMapping("/addCustomerDetails/{enquiryId}")
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
 	public ResponseEntity<LoanApplicant> addCustomerDetails(@RequestPart("customerJson") String customerdetails,
-<<<<<<< HEAD
-			                                             
-=======
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
+
 			                                                @RequestPart("address") MultipartFile profaddr,
 			                                                @RequestPart("pan") MultipartFile profpan,
 			                                                @RequestPart("photo") MultipartFile profphoto,
