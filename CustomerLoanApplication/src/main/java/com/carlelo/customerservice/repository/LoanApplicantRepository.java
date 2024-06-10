@@ -12,3 +12,4 @@ public interface LoanApplicantRepository extends JpaRepository<LoanApplicant, In
 	
 
 }
+
