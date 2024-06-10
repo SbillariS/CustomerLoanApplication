@@ -3,6 +3,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.carlelo.customerservice.model.CibilDetails;
+import com.carlelo.customerservice.model.CustomerVerification;
 import com.carlelo.customerservice.model.LoanApplicant;
 
 public interface LoanApplicantServiceI 
@@ -17,6 +18,8 @@ public interface LoanApplicantServiceI
 	public List<LoanApplicant> deleteSingleApplicant(int customerId);
 
 	public void deleteAllApplicant();
+
+	public CustomerVerification updateCustomerVerification(int verificationID, CustomerVerification cv);
 
 
 

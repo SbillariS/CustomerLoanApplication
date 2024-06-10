@@ -23,4 +23,5 @@ public class SanctionLetter
    private String remarks;
    private String termsCondition;
    private String status;
+   
 }

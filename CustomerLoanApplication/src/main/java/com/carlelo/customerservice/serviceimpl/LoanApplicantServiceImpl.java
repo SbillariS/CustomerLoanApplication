@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.carlelo.customerservice.model.AllPersonalDocs;
 import com.carlelo.customerservice.model.CibilDetails;
+import com.carlelo.customerservice.model.CustomerVerification;
 import com.carlelo.customerservice.model.LoanApplicant;
+import com.carlelo.customerservice.repository.CustomerVerificationRepository;
 import com.carlelo.customerservice.repository.LoanApplicantRepository;
 import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 {
 	@Autowired LoanApplicantRepository repo;
+	@Autowired CustomerVerificationRepository verificationrepo;
 
 	@Override
 	public LoanApplicant addCustomerDetails(String customerdetails,MultipartFile profaddr,
@@ -94,4 +97,16 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	{
 		 repo.deleteAll();
 	}
+
+	@Override
+	public CustomerVerification updateCustomerVerification(int verificationID,CustomerVerification cv) 
+	{
+		if(verificationrepo.existsById(verificationID))
+		{
+			return verificationrepo.save(cv);
+		}
+		return cv;
+	}
+	
+	
 }

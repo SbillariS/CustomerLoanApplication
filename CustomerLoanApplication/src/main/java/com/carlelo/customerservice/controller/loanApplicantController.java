@@ -7,14 +7,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.carlelo.customerservice.model.CibilDetails;
+import com.carlelo.customerservice.model.CustomerVerification;
 import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 
@@ -68,5 +71,11 @@ public class loanApplicantController
 		loan.deleteAllApplicant();
 		String str="All applicant deleted successfully";
 		return new ResponseEntity<String>(str,HttpStatus.OK);	
+	}
+	@PatchMapping("/updateCustomerVerification/{verificationID}")
+	public ResponseEntity<CustomerVerification> updateCustomerVerification(@PathVariable int verificationID,@RequestBody CustomerVerification cv)
+	{
+		CustomerVerification vefification=loan.updateCustomerVerification(verificationID,cv); 
+		return new ResponseEntity<CustomerVerification>(vefification,HttpStatus.OK);	
 	}
 }
