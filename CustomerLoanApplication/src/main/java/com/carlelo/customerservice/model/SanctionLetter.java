@@ -25,3 +25,4 @@ public class SanctionLetter
    private String status;
    
 }
+

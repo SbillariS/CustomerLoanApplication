@@ -12,10 +12,17 @@ public class CustomerLoanApplication {
 		SpringApplication.run(CustomerLoanApplication.class, args);
 	}
 	@Bean
+	public RestTemplate rs()
+	{
+		RestTemplate rt=new RestTemplate();
+		return rt;
+				
+	}
 	public RestTemplate rt()
 	{
 		RestTemplate rs=new RestTemplate();
 		return rs;
 	}
+
 
 }
