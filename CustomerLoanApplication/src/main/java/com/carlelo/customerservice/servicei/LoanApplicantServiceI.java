@@ -24,4 +24,4 @@ public interface LoanApplicantServiceI
 			MultipartFile pancard, MultipartFile incomeTax, MultipartFile adcardd, MultipartFile img,
 			MultipartFile signature, MultipartFile banqcheque, MultipartFile salaryslip);
 
-}
+}  
