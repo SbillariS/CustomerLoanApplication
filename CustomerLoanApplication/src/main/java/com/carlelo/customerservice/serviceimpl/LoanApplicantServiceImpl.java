@@ -28,19 +28,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-<<<<<<< HEAD
 public class LoanApplicantServiceImpl implements LoanApplicantServiceI {
-=======
-public class LoanApplicantServiceImpl implements LoanApplicantServiceI
-{
+	
 	@Autowired LoanApplicantRepository repo;
 	@Autowired CustomerVerificationRepository verificationrepo;
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
 
-<<<<<<< HEAD
     @Autowired
     LoanApplicantRepository repo;
-=======
+    
 	@Override
 	public LoanApplicant addCustomerDetails(String customerdetails,MultipartFile profaddr,
 			MultipartFile profpan, MultipartFile profphoto, MultipartFile profit,
@@ -81,9 +76,7 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		}
 		return repo.save(app);
 	}
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
 
-<<<<<<< HEAD
     @Override
     public LoanApplicant addCustomerDetails(String customerdetails, MultipartFile profaddr, MultipartFile profpan,
             MultipartFile profphoto, MultipartFile profit, MultipartFile profadhar, MultipartFile profsign,
@@ -91,7 +84,6 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
         
         ObjectMapper mapper = new ObjectMapper();
         LoanApplicant app = null;
-=======
 
 	
 	  //update
@@ -196,7 +188,6 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	{
 		return repo.findAll();
 	}
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
 
         try {
             app = mapper.readValue(customerdetails, LoanApplicant.class);
@@ -210,7 +201,6 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
             validateMobileNumber(app.getCmobno());
             validateEmail(app.getCustomerEmail());
 
-<<<<<<< HEAD
             try {
                 AllPersonalDocs app2 = new AllPersonalDocs();
                 app2.setAddressProof(profaddr.getBytes());
@@ -280,7 +270,6 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
     public void deleteAllApplicant() {
         repo.deleteAll();
     }
-=======
 	@Override
 	public void deleteAllApplicant() 
 	{
@@ -296,6 +285,5 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		}
 		return cv;
 	}
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
 }
 

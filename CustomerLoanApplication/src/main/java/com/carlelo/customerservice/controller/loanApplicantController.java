@@ -32,19 +32,16 @@ import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 @RestController
 public class loanApplicantController 
 {
-<<<<<<< HEAD
 	@Autowired LoanApplicantServiceI loan;
 		
 	
 	@PostMapping("/addCustomerDetails")
-=======
 
 	@Autowired
 	LoanApplicantServiceI loan;
 	@Autowired RestTemplate rt;
 
 	@PostMapping("/addCustomerDetails/{enquiryId}")
->>>>>>> branch 'main' of https://github.com/SbillariS/CustomerLoanApplication.git
 	public ResponseEntity<LoanApplicant> addCustomerDetails(@RequestPart("customerJson") String customerdetails,
 
 			                                                @RequestPart("address") MultipartFile profaddr,
