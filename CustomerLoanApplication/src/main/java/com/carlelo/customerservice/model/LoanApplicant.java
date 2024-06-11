@@ -33,6 +33,10 @@ public class LoanApplicant
     
 
     
+    
+    
+  
+    
     @OneToOne(cascade=CascadeType.ALL)
     private AllPersonalDocs documents;
     
@@ -45,7 +49,7 @@ public class LoanApplicant
     @OneToOne(cascade=CascadeType.ALL)
     private MedicalDetails medical;
     
-    @OneToOne(cascade=CascadeType.ALL)
+   @OneToOne(cascade=CascadeType.ALL)
     private CibilDetails cibil;
     
     @OneToOne(cascade=CascadeType.ALL)

@@ -9,11 +9,11 @@ import lombok.Data;
 public class CibilDetails 
 {
 	@Id
-	private String cibilId;
-    private int cibilScore;
-    private String remark;
-    private String isApplicable;
-    private String fromDate;
-    private String toDate;
+	    private String cibilId;
+	    private int cibilScore;
+	    private String remark;
+	    private String isApplicable;
+	    private String fromDate;
+	    private String toDate;
 
 }
