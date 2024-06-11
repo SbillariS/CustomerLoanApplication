@@ -54,7 +54,7 @@ public class loanApplicantController
 		return new ResponseEntity<LoanApplicant>(la,HttpStatus.CREATED);	
 
 	}
-	@PutMapping("/patchDta/{customerId}")
+	@PatchMapping("/patchDta/{customerId}")
 	public ResponseEntity <LoanApplicant> patchData(@RequestPart("text") String loanjason,
 			                                        @PathVariable int customerId,
 			                                        @RequestPart("id") MultipartFile documentid,
@@ -120,8 +120,3 @@ public class loanApplicantController
 		return new ResponseEntity<CustomerVerification>(vefification,HttpStatus.OK);	
 	}
 }
-
-
-
-
-

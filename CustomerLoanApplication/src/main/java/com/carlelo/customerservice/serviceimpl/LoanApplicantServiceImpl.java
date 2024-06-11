@@ -3,17 +3,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestPart;
-
 import org.springframework.web.multipart.MultipartFile;
-
 import com.carlelo.customerservice.exception.LoanApplicationNotFoundException;
+import com.carlelo.customerservice.exception.InvalidEmailException;
+import com.carlelo.customerservice.exception.InvalidMobileNumberException;
 import com.carlelo.customerservice.model.AllPersonalDocs;
 import com.carlelo.customerservice.model.CibilDetails;
 import com.carlelo.customerservice.model.CustomerVerification;
@@ -47,8 +45,8 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		if(app!=null)
-		{
+		 if (app != null) {
+		
 			try {
 				AllPersonalDocs app2=new AllPersonalDocs();
 				app2.setAddressProof(profaddr.getBytes());
@@ -116,7 +114,6 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	}
 
 	@Override
-
 	public LoanApplicant patchData(String loanjason, MultipartFile documentid, MultipartFile addressproof,
 			MultipartFile pancard, MultipartFile incomeTax, MultipartFile adcardd, MultipartFile img,
 			MultipartFile signature, MultipartFile banqcheque, MultipartFile salaryslip) {
@@ -213,4 +210,5 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	}
 
 	}
+
 

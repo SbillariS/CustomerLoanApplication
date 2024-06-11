@@ -16,4 +16,3 @@ private String maritalStatus;
 private String dependentMember;
 private double familyIncome;
 }
-
