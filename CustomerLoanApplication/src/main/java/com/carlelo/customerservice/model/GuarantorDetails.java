@@ -9,15 +9,18 @@ import lombok.Data;
 public class GuarantorDetails {
 
 	@Id
-   private int GuarantorId;
-   private String GuarantorName;
-   private  String GuarantorDateOfBirth;
-   private  String GuarantorRelationshipwithCustomer;
-   private  long GuarantorMobileNumber;
-   private  long GuarantorAdharCardNo;
-   private  String GuarantorMortgageDetails;
-   private  String GuarantorJobDetails;
-   private  String	GuarantorLoaclAddress;
-   private  String GuarantorPermanentAddress;
+   private int guarantorId;
+   private String guarantorName;
+   private  String guarantorDateOfBirth;
+   private  String guarantorRelationshipwithCustomer;
+   private  long guarantorMobileNumber;
+   private  long guarantorAdharCardNo;
+   private  String guarantorMortgageDetails;
+   private  String guarantorJobDetails;
+   private  String	guarantorLoaclAddress;
+   private  String guarantorPermanentAddress;
 
+   
+   
+   
 }
