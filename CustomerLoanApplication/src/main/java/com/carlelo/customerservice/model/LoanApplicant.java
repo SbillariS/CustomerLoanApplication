@@ -23,7 +23,7 @@ public class LoanApplicant
     private int customerAge;
     private String customerGender;
     private String customerEmail;
-    private long cmobno;
+    private String cmobno;
     private long caddmobno;
     private double downPayment;
     private double totalLoan;

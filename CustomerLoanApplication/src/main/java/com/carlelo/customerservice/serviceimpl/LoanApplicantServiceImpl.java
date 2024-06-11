@@ -4,14 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import com.carlelo.customerservice.exception.LoanApplicationNotFoundException;
 import com.carlelo.customerservice.exception.InvalidEmailException;
 import com.carlelo.customerservice.exception.InvalidMobileNumberException;
+import com.carlelo.customerservice.exception.InvalidPincodeNumberException;
 import com.carlelo.customerservice.model.AllPersonalDocs;
 import com.carlelo.customerservice.model.CibilDetails;
 import com.carlelo.customerservice.model.CustomerVerification;
@@ -45,7 +43,8 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		 if (app != null) {
+		 if (app != null) 
+		 {
 		
 			try {
 				AllPersonalDocs app2=new AllPersonalDocs();
@@ -60,14 +59,43 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 				app.setDocuments(app2);
 				app.setCibil(cd);
 			}
+		 
 			catch (IOException e) 
 			{
 				e.printStackTrace();
 			}
-			
+		 
 		}
-		return repo.save(app);
-	}
+			 if(app.getCmobno().length()==10)
+			 {
+				 if(app.getCustomerEmail().endsWith("@gmail.com")) 
+				 {
+					 if(app.getAddress().getPinCode().length()==6)
+					 {
+				          return repo.save(app);
+				     }
+					 else
+					 {
+						 throw new InvalidPincodeNumberException("You have entered invalid pincode.Please enter valid 6 digit pincode number");
+					 }
+				 }
+				 else
+				 {
+					 throw new InvalidEmailException("You have entered invalid email.Please correct it.");
+				 }
+			  }
+		  else
+		    {
+	         throw new InvalidMobileNumberException("Please enter 10 digit valid mobile number"); 
+					 
+	        }
+         }
+		
+		
+		 
+		 
+		
+	
 
 
 	

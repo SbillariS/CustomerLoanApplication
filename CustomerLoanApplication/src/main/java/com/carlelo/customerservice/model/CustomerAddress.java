@@ -14,5 +14,5 @@ private String areaName;
 private String district;
 private String cityName;
 private String stateName;
-private int pinCode;
+private String pinCode;
 }

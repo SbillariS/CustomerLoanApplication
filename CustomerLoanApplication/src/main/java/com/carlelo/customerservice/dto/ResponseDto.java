@@ -8,9 +8,16 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class ResponseDto 
 {
 	 private String message;
 	 private Date timeStamp;
+	public ResponseDto(String message, Date timeStamp) 
+	{
+		super();
+		this.message = message;
+		this.timeStamp = timeStamp;
+	}
+	
+	 
 }
