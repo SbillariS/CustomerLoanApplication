@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.carlelo.customerservice.exception.InvalidEmailException;
+import com.carlelo.customerservice.exception.InvalidMobileNumberException;
 import com.carlelo.customerservice.model.AllPersonalDocs;
 import com.carlelo.customerservice.model.CibilDetails;
 import com.carlelo.customerservice.model.CustomerVerification;
@@ -44,8 +47,10 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		if(app!=null)
-		{
+		 if (app != null) {
+            validateMobileNumber(app.getCmobno());
+            validateEmail(app.getCustomerEmail());
+		
 			try {
 				AllPersonalDocs app2=new AllPersonalDocs();
 				app2.setAddressProof(profaddr.getBytes());
@@ -122,7 +127,26 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 
 	}
 
-	
+	private void validateMobileNumber(long mobileNumber) {
+        String mobileNumberStr = String.valueOf(mobileNumber);
+        if (mobileNumberStr.length() != 10 || !mobileNumberStr.matches("\\d{10}")) {
+            throw new InvalidMobileNumberException("Invalid mobile number: " + mobileNumber);
+        }
+    }
+
+	/*
+	 * private void validatePincode(int pincode) { String pincodeStr =
+	 * String.valueOf(pincode); if (pincodeStr.length() != 6 ||
+	 * !pincodeStr.matches("\\d{6}")) { throw new
+	 * InvalidPincodeException("Invalid pincode: " + pincode); } }
+	 */
+
+    private void validateEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        if (!email.matches(emailRegex)) {
+            throw new InvalidEmailException("Invalid email address: " + email);
+        }
+    }
 
 	
 	
