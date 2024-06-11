@@ -20,4 +20,7 @@ public class GuarantorDetails {
    private  String	guarantorLocalAddress;
    private  String guarantorPermanentAddress;
 
+   
+   
+   
 }

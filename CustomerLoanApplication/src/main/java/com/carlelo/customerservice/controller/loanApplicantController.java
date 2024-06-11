@@ -27,8 +27,6 @@ import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.model.MedicalDetails;
 import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 
-
-
 @RestController
 public class loanApplicantController 
 {
@@ -56,18 +54,18 @@ public class loanApplicantController
 		return new ResponseEntity<LoanApplicant>(la,HttpStatus.CREATED);	
 
 	}
-	@PutMapping("/patchDta/{customerId}")
+	@PatchMapping("/patchDta/{customerId}")
 	public ResponseEntity <LoanApplicant> patchData(@RequestPart("text") String loanjason,
-			@PathVariable int customerId,
-			@RequestPart("id") MultipartFile documentid,
-			@RequestPart("add") MultipartFile addressproof,
-					@RequestPart("pancard") MultipartFile pancard,
-					@RequestPart("tax")MultipartFile incomeTax,
-							@RequestPart("adcard") MultipartFile adcardd,
-							@RequestPart("photo") MultipartFile img,
-							@RequestPart("signature") MultipartFile signature,
-							@RequestPart("bankc") MultipartFile banqcheque,
-							@RequestPart("salslip") MultipartFile salaryslip)
+			                                        @PathVariable int customerId,
+			                                        @RequestPart("id") MultipartFile documentid,
+		                                         	@RequestPart("add") MultipartFile addressproof,
+				                                 	@RequestPart("pancard") MultipartFile pancard,
+					                                @RequestPart("tax")MultipartFile incomeTax,
+						                        	@RequestPart("adcard") MultipartFile adcardd,
+							                        @RequestPart("photo") MultipartFile img,
+							                        @RequestPart("signature") MultipartFile signature,
+							                        @RequestPart("bankc") MultipartFile banqcheque,
+							                        @RequestPart("salslip") MultipartFile salaryslip)
 	{
 		
 	LoanApplicant la1=loan.patchData(loanjason,documentid,addressproof,pancard,incomeTax,adcardd,img,signature,banqcheque,salaryslip);
@@ -115,15 +113,10 @@ public class loanApplicantController
 		return new ResponseEntity<String>(str,HttpStatus.OK);	
 
 	}
-	@PatchMapping("/updateCustomerVerification/{verificationID}")
-	public ResponseEntity<CustomerVerification> updateCustomerVerification(@PathVariable int verificationID,@RequestBody CustomerVerification cv)
+	@PatchMapping("/VerifyLoanApplication/{customerId}")
+	public ResponseEntity<CustomerVerification> VerifyLoanApplication(@PathVariable int customerId,@RequestBody CustomerVerification cv)
 	{
-		CustomerVerification vefification=loan.updateCustomerVerification(verificationID,cv); 
+		CustomerVerification vefification=loan.VerifyLoanApplication(customerId,cv); 
 		return new ResponseEntity<CustomerVerification>(vefification,HttpStatus.OK);	
 	}
 }
-
-
-
-
-

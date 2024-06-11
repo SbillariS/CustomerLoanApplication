@@ -27,11 +27,11 @@ public class LoanApplicant
     private long caddmobno;
     private double downPayment;
     private double totalLoan;
-    private String loanStatus;  
+    private String loanStatus; 
     
     
     
-  
+
     
     @OneToOne(cascade=CascadeType.ALL)
     private AllPersonalDocs documents;

@@ -1,16 +1,17 @@
 package com.carlelo.customerservice.serviceimpl;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestPart;
-
 import org.springframework.web.multipart.MultipartFile;
+import com.carlelo.customerservice.exception.LoanApplicationNotFoundException;
+import com.carlelo.customerservice.exception.InvalidEmailException;
+import com.carlelo.customerservice.exception.InvalidMobileNumberException;
 import com.carlelo.customerservice.model.AllPersonalDocs;
 import com.carlelo.customerservice.model.CibilDetails;
 import com.carlelo.customerservice.model.CustomerVerification;
@@ -44,8 +45,8 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		if(app!=null)
-		{
+		 if (app != null) {
+		
 			try {
 				AllPersonalDocs app2=new AllPersonalDocs();
 				app2.setAddressProof(profaddr.getBytes());
@@ -101,16 +102,6 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 				app2.setSalarySlips(profsslip.getBytes());
 				app2.setSignature(profsign.getBytes());
 				up.setDocuments(app2);
-				/*app.setInfo(app1);
-				app.setAccount(app3);
-				app.setCibil(app4);
-				app.setAddress(app5);
-				app.setVerification(app6);
-				app.setGuarantor(app7);
-				app.setLedger(null);
-				app.setDisbursment(app9);
-				app.setMedical(app10);
-				app.setSaction(app11);*/
 			}
 			catch (IOException e) 
 			{
@@ -122,12 +113,7 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 
 	}
 
-	
-
-	
-	
 	@Override
-
 	public LoanApplicant patchData(String loanjason, MultipartFile documentid, MultipartFile addressproof,
 			MultipartFile pancard, MultipartFile incomeTax, MultipartFile adcardd, MultipartFile img,
 			MultipartFile signature, MultipartFile banqcheque, MultipartFile salaryslip) {
@@ -202,14 +188,27 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		 repo.deleteAll();
 	}
 
+
+
 	@Override
-	public CustomerVerification updateCustomerVerification(int verificationID,CustomerVerification cv) 
+	public CustomerVerification VerifyLoanApplication(int customerId, CustomerVerification cv)
 	{
-		if(verificationrepo.existsById(verificationID))
+		Optional<LoanApplicant> opCust=repo.findById(customerId);
+		if(opCust.isPresent())
 		{
-			return verificationrepo.save(cv);
+			LoanApplicant customer=opCust.get();
+			cv.setVerificationID(customer.getCustomerId());
+			cv.setVerificationDate(new Date());
+			customer.setVerification(cv);
+			repo.save(customer);
+		}
+		else
+		{
+		 throw new LoanApplicationNotFoundException("Customer Id is invalid ,so please enter correct Customer Id");
 		}
 		return cv;
 	}
-}
+
+	}
+
 

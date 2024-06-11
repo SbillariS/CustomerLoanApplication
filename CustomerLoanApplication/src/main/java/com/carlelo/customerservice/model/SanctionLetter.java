@@ -15,7 +15,7 @@ public class SanctionLetter
    private Date sanctionDate;
    private String applicantName;
    private long ContactNo;
-   private String producthomeEquity;
+   private String onRoadPrice;
    private double loanAmtSanctioned;
    private String interestType;
    private float rateOfInterest;
