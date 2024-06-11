@@ -18,21 +18,16 @@ public interface LoanApplicantServiceI
 	public List<LoanApplicant> deleteSingleApplicant(int customerId);
 
 	public void deleteAllApplicant();
-
-	public CustomerVerification updateCustomerVerification(int verificationID, CustomerVerification cv);
-
-
-
-
+	
 	public LoanApplicant updateLoanApplicant(String customerdetails, MultipartFile profaddr, MultipartFile profpan,
 			MultipartFile profphoto, MultipartFile profit, MultipartFile profadhar, MultipartFile profsign,
 			MultipartFile profchecque, MultipartFile profsslip);
 
-	
-
 	public LoanApplicant patchData(String loanjason, MultipartFile documentid, MultipartFile addressproof,
 			MultipartFile pancard, MultipartFile incomeTax, MultipartFile adcardd, MultipartFile img,
 			MultipartFile signature, MultipartFile banqcheque, MultipartFile salaryslip);
+
+	public CustomerVerification VerifyLoanApplication(int customerId, CustomerVerification cv);
 
 }  
 
