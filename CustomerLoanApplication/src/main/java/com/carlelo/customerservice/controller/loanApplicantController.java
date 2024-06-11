@@ -32,10 +32,6 @@ import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
 @RestController
 public class loanApplicantController 
 {
-	@Autowired LoanApplicantServiceI loan;
-		
-	
-	@PostMapping("/addCustomerDetails")
 
 	@Autowired
 	LoanApplicantServiceI loan;
@@ -126,8 +122,3 @@ public class loanApplicantController
 		return new ResponseEntity<CustomerVerification>(vefification,HttpStatus.OK);	
 	}
 }
-
-
-
-
-
