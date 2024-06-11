@@ -1,5 +1,7 @@
 package com.carlelo.customerservice.model;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -10,7 +12,7 @@ public class SanctionLetter
 {
    @Id
    private int sanctionId;
-   private String sanctionDate;
+   private Date sanctionDate;
    private String applicantName;
    private long ContactNo;
    private String producthomeEquity;

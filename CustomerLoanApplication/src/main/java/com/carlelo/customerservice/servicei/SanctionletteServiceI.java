@@ -1,9 +1,11 @@
 package com.carlelo.customerservice.servicei;
 
+import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.model.SanctionLetter;
 
-public interface SanctionletteServiceI {
+public interface SanctionletteServiceI 
+{
 
-	SanctionLetter updateSanction(SanctionLetter sl, int sanctionletteId);
+public LoanApplicant updateSanction(SanctionLetter sl, int customerId);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.model.SanctionLetter;
 import com.carlelo.customerservice.servicei.SanctionletteServiceI;
 
@@ -17,11 +18,11 @@ public class SanctionletterController {
 	@Autowired
 	SanctionletteServiceI ss;
 	
-	@PutMapping("updateSanctionlette/{SanctionletteId}")
-	public ResponseEntity<SanctionLetter> updateSanction(@RequestBody SanctionLetter sl,@PathVariable int SanctionletteId )
+	@PutMapping("updateSanctionlette/{customerId}")
+	public ResponseEntity<LoanApplicant> updateSanction(@RequestBody SanctionLetter sl,@PathVariable int customerId )
 	{
-		SanctionLetter xz=ss.updateSanction(sl,SanctionletteId);
-				return new ResponseEntity<SanctionLetter>(xz, HttpStatus.ACCEPTED);
+		LoanApplicant xz=ss.updateSanction(sl,customerId);
+				return new ResponseEntity<LoanApplicant>(xz, HttpStatus.ACCEPTED);
 	}
 
 }
