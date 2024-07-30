@@ -17,7 +17,7 @@ public class EmailIdExceptionHandler
 	public ResponseEntity<ResponseDto>handleemailinvalidException(InvalidEmailException ee)
 	{
 		ResponseDto rd=new ResponseDto(ee.getMessage(),new Date());
-		return new ResponseEntity<ResponseDto>(rd,HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<ResponseDto>(rd,HttpStatus.NOT_FOUND);
 		
 	}
 

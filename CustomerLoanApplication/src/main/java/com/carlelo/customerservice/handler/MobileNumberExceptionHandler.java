@@ -15,7 +15,7 @@ public class MobileNumberExceptionHandler
 	public ResponseEntity<ResponseDto> handleMobileNumberException(InvalidMobileNumberException me)
 	{
 		ResponseDto rd=new ResponseDto(me.getMessage(),new Date());
-		return new ResponseEntity<ResponseDto> (rd,HttpStatus.CONFLICT);
+		return new ResponseEntity<ResponseDto> (rd,HttpStatus.NOT_FOUND);
 		
 	}
 

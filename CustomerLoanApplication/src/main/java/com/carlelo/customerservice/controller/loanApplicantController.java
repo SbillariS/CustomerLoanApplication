@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,7 +27,7 @@ import com.carlelo.customerservice.model.CustomerVerification;
 import com.carlelo.customerservice.model.LoanApplicant;
 import com.carlelo.customerservice.model.MedicalDetails;
 import com.carlelo.customerservice.servicei.LoanApplicantServiceI;
-
+@CrossOrigin("*")
 @RestController
 public class loanApplicantController 
 {
@@ -35,7 +36,7 @@ public class loanApplicantController
 	LoanApplicantServiceI loan;
 	@Autowired RestTemplate rt;
 
-	@PostMapping("/addCustomerDetails/{enquiryId}")
+	@PostMapping("/addCustomerDetails")
 	public ResponseEntity<LoanApplicant> addCustomerDetails(@RequestPart("customerJson") String customerdetails,
 
 			                                                @RequestPart("address") MultipartFile profaddr,
@@ -45,12 +46,12 @@ public class loanApplicantController
 			                                                @RequestPart("adhar") MultipartFile profadhar,
 			                                                @RequestPart("sign") MultipartFile profsign,
 			                                                @RequestPart("checque") MultipartFile profchecque,
-			                                                @RequestPart("sslip") MultipartFile profsslip,
-			                                                @PathVariable String enquiryId)
+			                                                @RequestPart("sslip") MultipartFile profsslip
+			                                               )
 	{      
-		String url="http://localhost:9080/getcibilDetails/"+enquiryId;
-		CibilDetails cd=rt.getForObject(url, CibilDetails.class);
-		LoanApplicant la=loan.addCustomerDetails(customerdetails,profaddr,profpan,profphoto,profit,profadhar,profsign,profchecque,profsslip,enquiryId,cd);
+		
+		
+		LoanApplicant la=loan.addCustomerDetails(customerdetails,profaddr,profpan,profphoto,profit,profadhar,profsign,profchecque,profsslip);
 		return new ResponseEntity<LoanApplicant>(la,HttpStatus.CREATED);	
 
 	}

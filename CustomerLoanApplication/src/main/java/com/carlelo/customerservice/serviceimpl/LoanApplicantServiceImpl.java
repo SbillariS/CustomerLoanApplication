@@ -30,12 +30,10 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 	public LoanApplicant addCustomerDetails(String customerdetails,MultipartFile profaddr,
 			MultipartFile profpan, MultipartFile profphoto, MultipartFile profit,
 			MultipartFile profadhar,MultipartFile profsign, MultipartFile profchecque, 
-			MultipartFile profsslip,String enquiryId,CibilDetails cd) 
+			MultipartFile profsslip) 
 	{
 		ObjectMapper mapper=new ObjectMapper();
 		LoanApplicant app=null;
-		
-		
 		try {
 			app=mapper.readValue(customerdetails, LoanApplicant.class);
 		} catch (JsonMappingException e) {
@@ -49,15 +47,15 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 			try {
 				AllPersonalDocs app2=new AllPersonalDocs();
 				app2.setAddressProof(profaddr.getBytes());
-				app2.setAddharCard(profadhar.getBytes());
-				app2.setBankcheque(profchecque.getBytes());
-				app2.setIncomeTax(profit.getBytes());
+if(profadhar!=null)			app2.setAddharCard(profadhar.getBytes());
+if(profchecque!=null)				app2.setBankcheque(profchecque.getBytes());
+if(profit!=null)				app2.setIncomeTax(profit.getBytes());
 				app2.setPanCard(profpan.getBytes());
 				app2.setPhoto(profphoto.getBytes());
-				app2.setSalarySlips(profsslip.getBytes());
-				app2.setSignature(profsign.getBytes());
+if(profsslip!=null)			app2.setSalarySlips(profsslip.getBytes());
+if(profsign!=null)				app2.setSignature(profsign.getBytes());
 				app.setDocuments(app2);
-				app.setCibil(cd);
+				
 			}
 		 
 			catch (IOException e) 
@@ -84,21 +82,13 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 					 throw new InvalidEmailException("You have entered invalid email.Please correct it.");
 				 }
 			  }
-		  else
+		    else
 		    {
 	         throw new InvalidMobileNumberException("Please enter 10 digit valid mobile number"); 
 					 
 	        }
          }
 		
-		
-		 
-		 
-		
-	
-
-
-	
 	  //update
 	@Override
 	public LoanApplicant updateLoanApplicant(String customerdetails, MultipartFile profaddr, MultipartFile profpan,
@@ -195,7 +185,9 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		{
 		   return optional.get();
 		}
-		return null;
+		else {
+			 throw new LoanApplicationNotFoundException("Customer Id is invalid ,so please enter correct Customer Id");
+		}
 	}
 
 	@Override
@@ -206,8 +198,9 @@ public class LoanApplicantServiceImpl implements LoanApplicantServiceI
 		   repo.deleteById(customerId);
 		   return repo.findAll();
 		}
-		
-		return null;
+		else {
+			 throw new LoanApplicationNotFoundException("Customer Id is invalid ,so please enter correct Customer Id");
+		}
 	}
 
 	@Override
